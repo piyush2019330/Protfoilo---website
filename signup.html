@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Signup</title>
+
+<style>
+body{
+    margin:0;
+    font-family:Arial,sans-serif;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(135deg,#1f4037,#99f2c8);
+}
+
+.box{
+    background:white;
+    padding:30px;
+    border-radius:12px;
+    width:350px;
+    text-align:center;
+    box-shadow:0 4px 10px rgba(0,0,0,0.2);
+}
+
+input{
+    width:100%;
+    padding:10px;
+    margin:8px 0;
+    box-sizing:border-box;
+}
+
+button{
+    width:100%;
+    padding:10px;
+    background:#1f4037;
+    color:white;
+    border:none;
+    border-radius:5px;
+    cursor:pointer;
+}
+
+button:hover{
+    opacity:0.9;
+}
+
+.login-link{
+    margin-top:15px;
+}
+
+.login-link a{
+    text-decoration:none;
+    color:#1f4037;
+    font-weight:bold;
+}
+
+#msg{
+    margin-top:10px;
+    font-weight:bold;
+}
+</style>
+</head>
+
+<body>
+
+<div class="box">
+
+    <h2>Create Account</h2>
+
+    <form id="signupForm">
+
+        <input type="text"
+               id="username"
+               placeholder="Username"
+               required>
+
+        <input type="email"
+               id="email"
+               placeholder="Email"
+               required>
+
+        <input type="password"
+               id="password"
+               placeholder="Password"
+               required>
+
+        <input type="password"
+               id="confirmPassword"
+               placeholder="Confirm Password"
+               required>
+
+        <button type="submit">
+            Create Account
+        </button>
+
+    </form>
+
+    <div class="login-link">
+        Already have an account?
+        <a href="login.html">Login</a>
+    </div>
+
+    <p id="msg"></p>
+
+</div>
+
+<script>
+
+document.getElementById("signupForm")
+.addEventListener("submit", function(e){
+
+    e.preventDefault();
+
+    let username =
+        document.getElementById("username").value;
+
+    let email =
+        document.getElementById("email").value;
+
+    let password =
+        document.getElementById("password").value;
+
+    let confirmPassword =
+        document.getElementById("confirmPassword").value;
+
+    if(password !== confirmPassword){
+        document.getElementById("msg").innerText =
+        "Passwords do not match ❌";
+        return;
+    }
+
+    fetch("http://127.0.0.1:5000/register",{
+        method:"POST",
+        headers:{
+            "Content-Type":"application/json"
+        },
+        body:JSON.stringify({
+            username:username,
+            email:email,
+            password:password
+        })
+    })
+    .then(res => res.json())
+    .then(data => {
+
+        document.getElementById("msg").innerText =
+        data.message;
+
+        if(data.message.toLowerCase().includes("success")){
+
+            setTimeout(() => {
+                window.location.href = "login.html";
+            },1500);
+        }
+
+    })
+    .catch(error => {
+        document.getElementById("msg").innerText =
+        "Server Error ❌";
+        console.error(error);
+    });
+
+});
+
+</script>
+
+</body>
+</html>
