@@ -21,34 +21,77 @@ function changeText() {
 }
 
 setInterval(changeText, 2000);
-
 changeText();
 
-function toggleTheme(){
+function toggleTheme() {
     document.body.classList.toggle("light");
 }
 
-const images = [
+/* -------------------- PROJECT 1 -------------------- */
+
+const images1 = [
     "image/img1.png",
     "image/img2.png"
 ];
 
-let currentImage = 0;
+let current1 = 0;
 
-const projectImage = document.getElementById("ProjectImage");
+const img1 = document.getElementById("ProjectImage");
 
 setInterval(() => {
 
-    projectImage.style.opacity = 0;
+    img1.style.opacity = 0;
 
     setTimeout(() => {
+        current1 = (current1 + 1) % images1.length;
+        img1.src = images1[current1];
+        img1.style.opacity = 1;
+    }, 500);
 
-        currentImage = (currentImage + 1) % images.length;
+}, 3000);
 
-        projectImage.src = images[currentImage];
 
-        projectImage.style.opacity = 1;
+/* -------------------- PROJECT 2 -------------------- */
 
+const images2 = [
+    "image/Hr_Anlystic.png",
+    "image/Hr_Anlystics.png"
+];
+
+let current2 = 0;
+
+const img2 = document.getElementById("ProjectImage2");
+
+setInterval(() => {
+
+    img2.style.opacity = 0;
+
+    setTimeout(() => {
+        current2 = (current2 + 1) % images2.length;
+        img2.src = images2[current2];
+        img2.style.opacity = 1;
+    }, 500);
+
+}, 3000);
+
+/*------------PROJECT 3 ----------- */
+const images3 = [
+    "image/img.jpeg",
+    "image/img2.jpeg"
+];
+
+let current3 = 0;
+
+const img3 = document.getElementById("ProjectImage3");
+
+setInterval(() => {
+
+    img3.style.opacity = 0;
+
+    setTimeout(() => {
+        current3 = (current3 + 1) % images3.length;
+        img3.src = images3[current3];
+        img3.style.opacity = 1;
     }, 500);
 
 }, 3000);
