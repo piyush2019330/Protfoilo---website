@@ -96,6 +96,65 @@ setInterval(() => {
 
 }, 3000);
 
+
+/* -------------------- PROJECT 4 -------------------- */
+
+const images4 = [
+    "image/overview.png",
+    "image/sales.png"
+];
+
+let current4 = 0;
+
+const img4 = document.getElementById("ProjectImage4");
+
+if (img4) {
+    setInterval(() => {
+
+        img4.style.opacity = 0;
+
+        setTimeout(() => {
+
+            current4 = (current4 + 1) % images4.length;
+
+            img4.src = images4[current4];
+
+            img4.style.opacity = 1;
+
+        }, 500);
+
+    }, 3000);
+}
+
+
+/* -------------------- PROJECT 5 -------------------- */
+
+const images5 = [
+    "image/student_performance.png",
+    "image/student_marks.png"
+];
+
+let current5 = 0;
+
+const img5 = document.getElementById("ProjectImage5");
+
+if (img5) {
+    setInterval(() => {
+
+        img5.style.opacity = 0;
+
+        setTimeout(() => {
+
+            current5 = (current5 + 1) % images5.length;
+
+            img5.src = images5[current5];
+
+            img5.style.opacity = 1;
+
+        }, 500);
+
+    }, 3000);
+}
 document.addEventListener("DOMContentLoaded", function () {
 
     const form = document.getElementById("contactForm");
